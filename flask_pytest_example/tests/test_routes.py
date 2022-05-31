@@ -3,7 +3,7 @@ from flask_wtf.csrf import CSRFProtect
 import json
 
 from flask_pytest_example.handlers.routes import configure_routes
-
+app.config['SECRET_KEY'] = 'secretkey'
 
 def test_base_route():
     app = Flask(__name__)
@@ -19,7 +19,6 @@ def test_base_route():
 
 def test_post_route__success():
     app = Flask(__name__)
-    csrf.init_app(app)
     configure_routes(app)
     client = app.test_client()
     url = '/post/test'
