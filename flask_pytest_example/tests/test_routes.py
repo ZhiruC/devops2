@@ -19,7 +19,6 @@ def test_base_route():
 
 def test_post_route__success():
     app = Flask(__name__)
-    csrf = CSRFProtect(app)
     csrf.init_app(app)
     configure_routes(app)
     client = app.test_client()
