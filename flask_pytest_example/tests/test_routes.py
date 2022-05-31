@@ -1,18 +1,10 @@
 from flask import Flask
 from flask_wtf.csrf import CSRFProtect
+csrf = CSRFProtect(app)
 import json
 
 from flask_pytest_example.handlers.routes import configure_routes
 
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware', # Compliant
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
 
 def test_base_route():
     app = Flask(__name__)
