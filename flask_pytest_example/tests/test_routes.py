@@ -44,8 +44,6 @@ def test_post_route__success():
 
 def test_post_route__failure__unauthorized():
     app = Flask(__name__)
-    csrf = CSRFProtect(app)
-    csrf.init_app(app)
     configure_routes(app)
     client = app.test_client()
     url = '/post/test'
@@ -66,8 +64,6 @@ def test_post_route__failure__unauthorized():
 
 def test_post_route__failure__bad_request():
     app = Flask(__name__)
-    csrf = CSRFProtect(app)
-    csrf.init_app(app)
     configure_routes(app)
     client = app.test_client()
     url = '/post/test'
