@@ -4,11 +4,12 @@ import json
 
 from flask_pytest_example.handlers.routes import configure_routes
 
+app = Flask(__name__)
+csrf = CSRFProtect(app)
+csrf.init_app(app)
 
 def test_base_route():
     app = Flask(__name__)
-    csrf = CSRFProtect(app)
-    csrf.init_app(app)
     configure_routes(app)
     client = app.test_client()
     url = '/'
@@ -20,8 +21,6 @@ def test_base_route():
 
 def test_post_route__success():
     app = Flask(__name__)
-    csrf = CSRFProtect(app)
-    csrf.init_app(app)
     configure_routes(app)
     client = app.test_client()
     url = '/post/test'
