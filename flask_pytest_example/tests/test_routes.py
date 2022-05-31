@@ -20,6 +20,7 @@ def test_base_route():
 
 def test_post_route__success():
     app = Flask(__name__)
+    csrf = CSRFProtect(app)
     class unprotectedForm(FlaskForm):
         class Meta:
             csrf = True
