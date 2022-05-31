@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_wtf.csrf import CSRFProtect
+from flask_wtf import FlaskForm
 import json
 
 from flask_pytest_example.handlers.routes import configure_routes
