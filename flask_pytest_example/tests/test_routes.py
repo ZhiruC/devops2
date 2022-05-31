@@ -41,9 +41,9 @@ def test_post_route__success():
 
 def test_post_route__failure__unauthorized():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'any secret string'
     csrf = CSRFProtect(app)
     csrf.init_app(app)
+app.config['SECRET_KEY'] = 'secretkey'
     configure_routes(app)
     client = app.test_client()
     url = '/post/test'
