@@ -3,14 +3,14 @@
   remote_user: vagrant
   tasks:
   - name: vider repo
-    shell: "rm /home/vagrant/AppFlask -rf"
+    shell: "rm /home/vagrant/MyAppFlask -rf"
     becom: 'yes'
   - name: clone git
     git:
       repo: https://github.com/ZhiruC/MyAppFlask.git
-      dest: /home/vagrant/AppFlask
+      dest: /home/vagrant/MyAppFlask
       version: main
       clone: yes
       update: no
   - name: docker compose
-    shell: "cd AppFlask; docker compose down; dockr compose up -d"
+    shell: "cd MyAppFlask; docker compose down; dockr compose up -d"
