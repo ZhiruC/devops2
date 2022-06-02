@@ -40,9 +40,9 @@
     become: 'yes'
   - name: clone git
     git:
-      repo: https://github.com/NaimAssoumani/Projets_Devops_flask
+      repo: https://github.com/ZhiruC/MyAppFlask
       dest: /home/vagrant/AppFlask
-      version: preprod
+      version: main
       clone: yes
       update: no
 
