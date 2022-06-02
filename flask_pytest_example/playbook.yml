@@ -45,8 +45,8 @@
       version: main
       clone: yes
       update: no
-  - name: copier 
+  - name: copier les fichiers et les dossiers 
     shell: "cp -rf /home/vagrant/AppFlask/flask_pytest_example/* /home/vagrant/AppFlask"
   - name: docker compose
-    shell: "cd AppFlask ; sudo docker compose down; sudo docker compose up -d"
+    shell: "docker system prune --all -f; cd AppFlask ; sudo docker compose down; sudo docker compose up -d"
     become: 'yes'
