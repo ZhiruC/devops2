@@ -1,0 +1,51 @@
+- name : Playbook_test
+  hosts: node04
+  remote_user: vagrant
+  tasks:
+  - name: vider repo
+    shell: " rm /home/vagrant/AppFlask -rf"
+    become: 'yes'
+  - name: installation python & outils
+    apt:
+     name:
+        - python3-pip
+        - python3
+        - curl
+        - ca-certificates
+        - software-properties-common
+        - lsb-release
+        - gnupg
+        - libseccomp2
+        - build-essential
+        - apt-transport-https
+     state: latest
+    become: 'yes'
+  - name: Add Docker GPG apt Key
+    apt_key:
+       url: https://download.docker.com/linux/debian/gpg
+       state: present
+    become: 'yes'
+  - name: Add Docker Repository
+    shell: 'sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" '
+    become: 'yes'
+  - name: Update apt and install docker-ce
+    apt:
+      name:
+         - docker-ce
+         - docker-ce-cli
+         - containerd.io
+         - docker-compose-plugin
+      state: latest
+      update_cache: true
+    become: 'yes'
+  - name: clone git
+    git:
+      repo: https://github.com/NaimAssoumani/Projets_Devops_flask
+      dest: /home/vagrant/AppFlask
+      version: preprod
+      clone: yes
+      update: no
+
+  - name: docker compose
+    shell: "cd AppFlask; sudo docker compose down; sudo docker compose up -d"
+    become: 'yes'
